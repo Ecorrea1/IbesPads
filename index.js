@@ -13,9 +13,12 @@ const botones = {
 
 function selectNotePad (note) {
     // Como puede hacer qeu por medio de esta funcion suene un audio
-    console.log(note);
+    const audio = new Audio('ruta_del_archivo_de_audio.mp3');
+    audio.play();
+    console.log(`Esta es la nota del PAD ${note}`);
     
 }
+
 createBtnPad(botones);
 
 function createBtnPad(btnPad){
