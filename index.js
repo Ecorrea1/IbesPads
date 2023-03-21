@@ -1,25 +1,40 @@
 const containerPad = document.getElementsByClassName('container');
 const rowPad = document.getElementById('rowPad');
+let playbackPad = false;
+let actualPad;
+let previuPad = '';
 const botones = {
     boton1: 'A',
-    boton2: 'B',
-    boton3: 'C',
-    boton4: 'D',
-    boton5: 'E',
-    boton6: 'F',
-    boton7: 'G',
-    boton8: 'B'
+    boton2: 'A#',
+    boton3: 'B',
+    boton4: 'C',
+    boton5: 'C#',
+    boton6: 'D',
+    boton7: 'D#',
+    boton8: 'E',
+    boton9: 'F',
+    boton10: 'F#',
+    boton11: 'G',
+    boton12: 'G#'
   };
 
-function selectNotePad (note) {
-    // Como puede hacer qeu por medio de esta funcion suene un audio
+function selectNotePad (note, typePad = 'Epic') {
     const audio = new Audio(`assets/audios/${note}.wav`);
+    if (actualPad && playbackPad) {
+      playbackPad = false;
+      return actualPad.pause();
+    }
+    playbackPad = true;
     audio.currentTime = 0;
-    audio.volume = 0.5; 
+    audio.volume = 0.5;
     audio.loop = true;
-    audio.play();
+    audio.play().then(() => console.log('Estoy reproducienbdo algo'));
     console.log(`Esta es la nota del PAD ${note}`);
-    
+    actualPad = audio;
+    // Como puedo pausar 
+}
+const selectModePad = (mode) => {
+
 }
 
 createBtnPad(botones);
@@ -34,8 +49,4 @@ function createBtnPad(btnPad){
         buttonPads.textContent = btnPad[key];
         rowPad.appendChild(buttonPads);
     }
-}
-
-const selectModePad = (mode) => {
-
 }
