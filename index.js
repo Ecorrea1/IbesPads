@@ -24,10 +24,7 @@ function createBtnPad(btnPad){
         buttonPads.className = 'col-3 container-notes';
         buttonPads.type = 'button'
         buttonPads.id = key;
-        // buttonPads.onclick = selectNotePad(btnPad[key]);
-        buttonPads.onclick = function() {
-            console.log(`Haz hecho clic en el botón ${btnPad[key]}`);
-        };
+        buttonPads.onclick = () => selectNotePad(btnPad[key]);
         buttonPads.textContent = btnPad[key];
         rowPad.appendChild(buttonPads);
     }
