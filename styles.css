@@ -1,0 +1,30 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    content: 'center';
+    align-items: center;
+    align-content: center;
+    /* text-align: 'center'; */
+}
+
+#container-pads{
+    padding: 1.2px;
+    margin: 1%;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+}
+
+.container-notes{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+}
