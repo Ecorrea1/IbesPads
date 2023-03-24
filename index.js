@@ -17,9 +17,8 @@ const botones = {
     boton12: 'G#'
   };
 
-function selectNotePad (note, typePad = 'Epic') {
-  // const audio = new Audio(`assets/audios/${note}-${typePad}.wav`);
-  const audio = new Audio(`assets/audios/${note}.wav`);
+function selectNotePad (note, typePad = 'Epic', format = 'wav') {
+  const audio = new Audio(`assets/audios/${note}-${typePad}.${format}`);
   if (actualPad && playbackPad) {
     playbackPad = false;
     return actualPad.pause();
@@ -45,6 +44,7 @@ function createBtnPad(btnPad){
     buttonPads.id = key;
     buttonPads.onclick = () => selectNotePad(btnPad[key]);
     buttonPads.textContent = btnPad[key];
+    console.log(btnPad[key])
     rowPad.appendChild(buttonPads);
   }
 }
