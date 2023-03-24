@@ -2,7 +2,6 @@ const containerPad = document.getElementsByClassName('container');
 const rowPad = document.getElementById('rowPad');
 let playbackPad = false;
 let actualPad;
-let previuPad = '';
 const botones = {
     boton1: 'A',
     boton2: 'A#',
@@ -19,19 +18,18 @@ const botones = {
   };
 
 function selectNotePad (note, typePad = 'Epic') {
-    const audio = new Audio(`assets/audios/${note}.wav`);
-    if (actualPad && playbackPad) {
-      playbackPad = false;
-      return actualPad.pause();
-    }
-    playbackPad = true;
-    audio.currentTime = 0;
-    audio.volume = 0.5;
-    audio.loop = true;
-    audio.play().then(() => console.log('Estoy reproducienbdo algo'));
-    console.log(`Esta es la nota del PAD ${note}`);
-    actualPad = audio;
-    // Como puedo pausar 
+  // const audio = new Audio(`assets/audios/${note}-${typePad}.wav`);
+  const audio = new Audio(`assets/audios/${note}.wav`);
+  if (actualPad && playbackPad) {
+    playbackPad = false;
+    return actualPad.pause();
+  }
+  playbackPad = true;
+  audio.currentTime = 0;
+  audio.volume = 0.5;
+  audio.loop = true;
+  audio.play();
+  actualPad = audio;
 }
 const selectModePad = (mode) => {
 
@@ -40,13 +38,13 @@ const selectModePad = (mode) => {
 createBtnPad(botones);
 
 function createBtnPad(btnPad){
-    for (const key in btnPad) {
-        const buttonPads  = document.createElement('button');
-        buttonPads.className = 'col-3 container-notes';
-        buttonPads.type = 'button'
-        buttonPads.id = key;
-        buttonPads.onclick = () => selectNotePad(btnPad[key]);
-        buttonPads.textContent = btnPad[key];
-        rowPad.appendChild(buttonPads);
-    }
+  for (const key in btnPad) {
+    const buttonPads  = document.createElement('button');
+    buttonPads.className = 'col-3 container-notes';
+    buttonPads.type = 'button'
+    buttonPads.id = key;
+    buttonPads.onclick = () => selectNotePad(btnPad[key]);
+    buttonPads.textContent = btnPad[key];
+    rowPad.appendChild(buttonPads);
+  }
 }
