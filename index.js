@@ -44,7 +44,6 @@ function createBtnPad(btnPad){
     buttonPads.id = key;
     buttonPads.onclick = () => selectNotePad(btnPad[key]);
     buttonPads.textContent = btnPad[key];
-    console.log(btnPad[key])
     rowPad.appendChild(buttonPads);
   }
 }
