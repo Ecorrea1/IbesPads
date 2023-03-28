@@ -17,16 +17,23 @@ const botones = {
     boton12: 'G#'
   };
 
-function selectNotePad (note, typePad = 'Epic', format = 'wav') {
-  const audio = new Audio(`assets/audios/${note}-${typePad}.${format}`);
+function selectNotePad (note, typePad = 'Atmospheric', format = 'opus') {
+  const regex = note.replace('#', 'sharp');
+  const gps = `assets/audios/${regex}-${typePad}.${format}`;
+  const audio = new Audio(gps);
   if (actualPad && playbackPad) {
     playbackPad = false;
     return actualPad.pause();
   }
   playbackPad = true;
-  audio.currentTime = 0;
-  audio.volume = 0.5;
+  // audio.currentTime = 0;
+  // audio.volume = 0.5;
   audio.loop = true;
+  // Precargar y bufferizar el archivo de audio en memoria
+  audio.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+  }, false);
   audio.play();
   actualPad = audio;
 }
