@@ -3,40 +3,38 @@ const rowPad = document.getElementById('rowPad');
 let playbackPad = false;
 let actualPad;
 const botones = {
-    boton1: 'A',
-    boton2: 'A#',
-    boton3: 'B',
-    boton4: 'C',
-    boton5: 'C#',
-    boton6: 'D',
-    boton7: 'D#',
-    boton8: 'E',
-    boton9: 'F',
-    boton10: 'F#',
-    boton11: 'G',
-    boton12: 'G#'
-  };
+  boton1: 'A',
+  boton2: 'A#',
+  boton3: 'B',
+  boton4: 'C',
+  boton5: 'C#',
+  boton6: 'D',
+  boton7: 'D#',
+  boton8: 'E',
+  boton9: 'F',
+  boton10: 'F#',
+  boton11: 'G',
+  boton12: 'G#'
+};
 
 function selectNotePad (note, typePad = 'Atmospheric', format = 'opus') {
   const regex = note.replace('#', 'sharp');
-  const gps = `assets/audios/${regex}-${typePad}.${format}`;
-  const audio = new Audio(gps);
+  const audio = new Audio(`assets/audios/${regex}-${typePad}.${format}`);
   if (actualPad && playbackPad) {
     playbackPad = false;
     return actualPad.pause();
   }
   playbackPad = true;
-  // audio.currentTime = 0;
-  // audio.volume = 0.5;
   audio.loop = true;
-  // Precargar y bufferizar el archivo de audio en memoria
-  audio.addEventListener('ended', function() {
+  audio.addEventListener('ended', () =>{
     this.currentTime = 0;
     this.play();
   }, false);
   audio.play();
   actualPad = audio;
+
 }
+
 const selectModePad = (mode) => {
 
 }
